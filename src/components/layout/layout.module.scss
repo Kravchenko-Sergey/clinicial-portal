@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+}
+
+.main {
+  width: 100%;
+  padding: 26px 16px 16px 24px;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  &:first-child {
+    font-size: 12px;
+    color: #6960D7;
+  }
+
+  &:last-child {
+    width: fit-content;
+    margin-top: 380px;
+    padding: 8px;
+    background-color: #6960D7;
+    border-radius: 30px;
+  }
+}
