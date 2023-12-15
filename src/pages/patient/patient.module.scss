@@ -1,0 +1,148 @@
+.text {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.gridContainer {
+  margin: 12px 0 0 0;
+  display: grid;
+  grid-template-areas: "area1 area2" "area3 area3";
+  column-gap: 16px;
+  row-gap: 24px;
+}
+
+.gridItem1 {
+  grid-area: area1;
+  height: 270px;
+  padding: 24px;
+  background-color: #F9F9FB;
+  border-radius: 12px;
+  border: 1px solid #EEEFF5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.gridItemTitleBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gridItemTitle {
+  font-weight: 700;
+}
+
+.gridItem2 {
+  grid-area: area2;
+  height: 270px;
+  padding: 24px;
+  background-color: #F9F9FB;
+  border-radius: 12px;
+  border: 1px solid #EEEFF5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.gridItem3 {
+  grid-area: area3;
+  height: 270px;
+  padding: 24px;
+  background-color: #F9F9FB;
+  border-radius: 12px;
+  border: 1px solid #EEEFF5;
+  display: flex;
+  gap: 40px;
+}
+
+.gridItem3Chart {
+  border-right: 1px solid #EEEFF5;
+  grid-area: area3;
+  display: flex;
+  flex: 0 1 85%;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.gridItem3Info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  > :first-child {
+    border-bottom: 1px solid #EEEFF5;
+  }
+
+  > :last-child {
+    padding-top: 24px;
+  }
+}
+
+.gridItem3InfoItem {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.gridItem3InfoItemTitle {
+  font-weight: 700;
+}
+
+.gridItem3InfoItemSubtitle {
+  margin: 4px 0 8px 0;
+  font-size: 12px;
+  color: #A1A0AF;
+}
+
+.gridItem3InfoItemValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #FF5492;
+}
+
+.legend {
+  margin-right: 40px;
+  display: flex;
+  gap: 24px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.oval {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #6960D7;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.allPatients {
+  color: #A1A0AF;
+}
+
+.patientName {
+  font-weight: 700;
+  color: #6960D7;
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
