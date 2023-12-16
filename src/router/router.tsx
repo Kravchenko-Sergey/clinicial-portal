@@ -1,25 +1,26 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { Home } from '../pages/home/home.tsx'
-import { Patients } from '../pages/patients/patients.tsx'
-import { Layout } from '../components/layout'
-import { Patient } from '../pages/patient/patient.tsx'
+import { Home } from 'pages/home'
+import { Patients } from 'pages/patients'
+import { Layout } from 'components/layout'
+import { Patient } from 'pages/patient'
+import {PATH} from "./route-paths.ts";
 
 export const router = createBrowserRouter([
 	{
-		path: '/',
+		path: PATH.HOME,
 		element: <Layout />,
 		children: [
 			{
-				path: 'home',
+				path: PATH.HOME,
 				element: <Home />
 			},
 			{
-				path: 'patients',
+				path: PATH.PATIENTS,
 				element: <Patients />
 			},
 			{
-				path: 'patients/:id',
+				path: `${PATH.PATIENTS}/:id`,
 				element: <Patient />
 			}
 		]

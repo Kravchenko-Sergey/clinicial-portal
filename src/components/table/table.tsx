@@ -4,7 +4,8 @@ import { flexRender, useReactTable, getCoreRowModel, getSortedRowModel } from '@
 import s from './table.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { IconDropDown } from '../../assets/icons/icon-drop-down.tsx'
+import { IconDropDown } from 'assets/icons'
+import { PATH } from '@/router'
 
 type TableProps = {
 	data: any
@@ -26,36 +27,37 @@ export const Table = ({ data, columns }: TableProps) => {
 		onSortingChange: setSorting
 	} as any)
 
-	const handleNameClick = (id: string) => navigate(`/patients/${id}`)
+	const handleNameClick = (id: string) => navigate(`${PATH.PATIENTS}/${id}`)
 
 	return (
 		<div className={s.root}>
 			<table className={s.table}>
-				{table.getHeaderGroups().map(headerGroup => (
-					<tr key={headerGroup.id}>
-						{headerGroup.headers.map(header => (
-							<th key={header.id} className={s.th} onClick={header.column.getToggleSortingHandler()}>
-								<div className={s.thFlex}>
-									{header.isPlaceholder ? null : (
-										<>
-											{flexRender(header.column.columnDef.header, header.getContext())}
-											{
-												{ asc: <IconDropDown style={{ transform: 'rotate(180deg)' }} />, desc: <IconDropDown /> }[
-													header.column.getIsSorted() ?? ''
-												]
-											}
-										</>
-									)}
-								</div>
-							</th>
-						))}
-					</tr>
-				))}
+				<thead>
+					{table.getHeaderGroups().map(headerGroup => (
+						<tr key={headerGroup.id}>
+							{headerGroup.headers.map(header => (
+								<th key={header.id} className={s.th} onClick={header.column.getToggleSortingHandler()}>
+									<div className={s.thFlex}>
+										{header.isPlaceholder ? null : (
+											<>
+												{flexRender(header.column.columnDef.header, header.getContext())}
+												{
+													{ asc: <IconDropDown style={{ transform: 'rotate(180deg)' }} />, desc: <IconDropDown /> }[
+														header.column.getIsSorted() ?? ''
+													]
+												}
+											</>
+										)}
+									</div>
+								</th>
+							))}
+						</tr>
+					))}
+				</thead>
 				<tbody>
 					{table.getRowModel().rows.map(row => (
 						<tr key={row.id}>
 							{row.getVisibleCells().map(cell => {
-								console.log(cell)
 								if (cell.column.id === 'name') {
 									return (
 										<td key={cell.id} className={s.td} onClick={() => handleNameClick((cell.row.original as any).id)}>

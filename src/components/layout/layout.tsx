@@ -1,37 +1,46 @@
-import { Outlet, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import s from './layout.module.scss'
-import { Sidebar } from '../sidebar'
-import { Printer } from '../../assets/icons/printer.tsx'
-import { Acecancer } from '../../assets/icons/acecancer.tsx'
-import { Home } from '../../assets/icons/home.tsx'
-import { People } from '../../assets/icons/people.tsx'
+import { Sidebar } from 'components/sidebar'
+import { Illustration, Printer } from 'assets/icons'
+import { Acecancer } from 'assets/icons'
+import { Home } from 'assets/icons'
+import { People } from 'assets/icons'
+import { PATH } from '@/router'
 
 export const Layout = () => {
-	const navigate = useNavigate()
-
 	return (
-		<div className={s.wrapper}>
-			<Sidebar>
-				<div className={s.item}>
-					<div>Powered By</div>
+		<>
+			<Sidebar className={s.sidebar}>
+				<div className={s.itemLogo}>
+					<h3>Powered By</h3>
 					<Acecancer />
 				</div>
-				<div className={s.item} onClick={() => navigate('/home')}>
-					<Home />
-					<div>Home</div>
-				</div>
-				<div className={s.item} onClick={() => navigate('/patients')}>
-					<People />
-					<div>Patients</div>
-				</div>
-				<div className={s.item}>
-					<Printer />
+				<nav className={s.navList}>
+					<NavLink
+						to={PATH.HOME}
+						className={({ isActive }) => (isActive ? `${s.navItem} ${s.active}` : `${s.navItem}`)}
+					>
+						<Home />
+						<h3>Home</h3>
+					</NavLink>
+					<NavLink
+						to={PATH.PATIENTS}
+						className={({ isActive }) => (isActive ? `${s.navItem} ${s.active}` : `${s.navItem}`)}
+					>
+						<People />
+						<h3>Patients</h3>
+					</NavLink>
+				</nav>
+				<div className={s.printer}>
+					<Illustration />
+					<div className={s.printerIconBox}>
+						<Printer />
+					</div>
 				</div>
 			</Sidebar>
 			<main className={s.main}>
 				<Outlet />
 			</main>
-			<footer></footer>
-		</div>
+		</>
 	)
 }

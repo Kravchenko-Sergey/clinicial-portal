@@ -10,12 +10,15 @@
 }
 
 .gridContainer {
-  width: 100%;
-  height: 100vh;
   margin-top: 24px;
   display: grid;
-  grid-template-columns: 49% 49%;
-  grid-template-rows: minmax(0, 290px) minmax(0, 290px);
+  grid-template-areas:
+          "area1 area2"
+          "area1 area3"
+          "area1 area4"
+          "area5 area6";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 80px 80px 104px 304px;
   gap: 24px;
 }
 
@@ -26,35 +29,33 @@
   border: 1px solid #EEEFF5;
   display: flex;
   gap: 40px;
-}
 
-.gridMiniContainer {
-  margin-bottom: 24px;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 33% 33% 33%;
-  gap: 16px;
-}
+  &.gridItem1 {
+    grid-area: area1;
+  }
 
-.gridMiniItem {
-  padding: 24px;
-  background-color: #F9F9FB;
-  border-radius: 12px;
-  border: 1px solid #EEEFF5;
-  display: flex;
-  justify-content: space-between;
-}
+  &.gridItem2 {
+    grid-area: area2;
+    justify-content: space-between;
+  }
 
-.gridMiniItemMedication {
-  padding: 24px;
-  background-color: #F9F9FB;
-  border-radius: 12px;
-  border: 1px solid #EEEFF5;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+  &.gridItem3 {
+    grid-area: area3;
+    justify-content: space-between;
+  }
 
+  &.gridItem4 {
+    grid-area: area4;
+  }
+
+  &.gridItem5 {
+    grid-area: area5;
+  }
+
+  &.gridItem6 {
+    grid-area: area6;
+  }
+}
 
 .properties {
   display: flex;
@@ -89,6 +90,7 @@
 
 .description {
   margin: 16px 0 40px 0;
+  max-width: 228px;
 }
 
 .countBox {

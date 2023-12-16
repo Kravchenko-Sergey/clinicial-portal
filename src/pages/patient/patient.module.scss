@@ -4,15 +4,14 @@
 }
 
 .gridContainer {
-  margin: 12px 0 0 0;
+  margin: 20px 0 0 0;
   display: grid;
   grid-template-areas: "area1 area2" "area3 area3";
   column-gap: 16px;
   row-gap: 24px;
 }
 
-.gridItem1 {
-  grid-area: area1;
+.gridItem {
   height: 270px;
   padding: 24px;
   background-color: #F9F9FB;
@@ -22,8 +21,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 24px;
 }
+
+.gridItem1 {
+  grid-area: area1;
+}
+
+.gridItem2 {
+  grid-area: area2;
+}
+
 
 .gridItemTitleBox {
   width: 100%;
@@ -36,23 +44,22 @@
   font-weight: 700;
 }
 
-.gridItem2 {
-  grid-area: area2;
-  height: 270px;
-  padding: 24px;
-  background-color: #F9F9FB;
-  border-radius: 12px;
-  border: 1px solid #EEEFF5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-}
-
 .gridItem3 {
   grid-area: area3;
+  display: flex;
+  flex-direction: column;
+}
+
+.gridItem3TitleBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gridItem3Content {
+  width: 100%;
   height: 270px;
+  margin: 12px 0 0 0;
   padding: 24px;
   background-color: #F9F9FB;
   border-radius: 12px;

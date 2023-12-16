@@ -1,30 +1,51 @@
-.wrapper {
-  display: flex;
+.sidebar{
+  position: fixed;
+
+  .itemLogo {
+    font-size: 12px;
+    color: #6960D7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .navList {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+
+    .navItem {
+      color: #A1A0AF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      fill: #A1A0AF;
+    }
+
+    .active {
+      color: #272543;
+      fill: #272543;
+    }
+  }
+
+  .printer {
+    margin: 272px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    .printerIconBox {
+      padding: 8px;
+      background-color: #6960D7;
+      border-radius: 50%;
+    }
+  }
 }
 
 .main {
-  width: 100%;
+  margin: 0 0 0 88px;
   padding: 26px 16px 16px 24px;
-}
-
-.item {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  &:first-child {
-    font-size: 12px;
-    color: #6960D7;
-  }
-
-  &:last-child {
-    width: fit-content;
-    margin-top: 380px;
-    padding: 8px;
-    background-color: #6960D7;
-    border-radius: 30px;
-  }
 }

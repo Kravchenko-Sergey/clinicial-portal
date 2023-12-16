@@ -8,5 +8,5 @@ type SidebarProps = {
 }
 
 export const Sidebar = ({ children, className }: SidebarProps) => {
-	return <div className={`${s.root} ${className}`}>{children}</div>
+	return <aside className={`${s.root} ${className}`}>{children}</aside>
 }

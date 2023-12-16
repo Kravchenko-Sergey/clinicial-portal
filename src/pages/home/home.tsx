@@ -1,7 +1,7 @@
-import { Header } from '../../components/header'
-import { ImageLogo } from '../../assets/images/image-logo.tsx'
-import { LineLogo } from '../../assets/images/line-logo.tsx'
-import { TextLogo } from '../../assets/images/text-logo.tsx'
+import { Header } from 'components/header'
+import { ImageLogo } from 'assets/images'
+import { LineLogo } from 'assets/images'
+import { TextLogo } from 'assets/images'
 import s from './home.module.scss'
 import {
 	Bar,
@@ -15,11 +15,14 @@ import {
 	XAxis,
 	YAxis
 } from 'recharts'
-import { Group } from '../../assets/icons/group.tsx'
+import { Group } from 'assets/icons'
 import { CircularProgress, Typography } from '@mui/joy'
 import { useCountUp } from 'use-count-up'
-import { Face } from '../../assets/icons/face.tsx'
-import { Man } from '../../assets/icons/man.tsx'
+import { Face } from 'assets/icons'
+import { Man } from 'assets/icons'
+import { divideValue } from '@/helpers'
+import { Oval } from 'components/oval'
+import { IconBox } from 'components/icon-box/icon-box.tsx'
 
 type CustomizedLabelProps = {
 	cx: number
@@ -97,12 +100,12 @@ export const Home = () => {
 				</div>
 			</Header>
 			<div className={s.gridContainer}>
-				<div className={s.gridItem}>
+				<div className={`${s.gridItem} ${s.gridItem1}`}>
 					<div className={s.properties}>
 						<div className={s.title}>
-							<div className={s.iconBox}>
+							<IconBox className={s.iconBox}>
 								<Group />
-							</div>
+							</IconBox>
 							<p>Patients</p>
 						</div>
 						<div className={s.description}>
@@ -114,12 +117,12 @@ export const Home = () => {
 						</div>
 						<div className={s.legend}>
 							<div className={s.legendItem}>
-								<div className={s.oval}></div>
+								<Oval color={'#6960D7'} />
 								<div>Male</div>
 								<div>45%</div>
 							</div>
 							<div className={s.legendItem}>
-								<div className={s.oval}></div>
+								<Oval color={'#e0ddff'} />
 								<div>Female</div>
 								<div>55%</div>
 							</div>
@@ -136,72 +139,70 @@ export const Home = () => {
 						</ResponsiveContainer>
 					</div>
 				</div>
-				<div className={s.gridMiniContainer}>
-					<div className={s.gridMiniItem}>
-						<div className={s.gridItemBox}>
-							<div className={s.iconBox}>
-								<Man />
-							</div>
-							<div>
-								<div>Physical Wellbeing</div>
-								<div>17 patients reported</div>
-							</div>
-						</div>
-						<div className={s.gridItemBox}>
-							<div>
-								<CircularProgress size='lg' determinate value={value1 as number}>
-									<Typography>{value1 && `${[...String(value1)][0]},${[...String(value1)][1]}`}</Typography>
-								</CircularProgress>
-							</div>
-							<div>Average score</div>
+				<div className={`${s.gridItem} ${s.gridItem2}`}>
+					<div className={s.gridItemBox}>
+						<IconBox color={'#FF5492'} className={s.iconBox}>
+							<Man />
+						</IconBox>
+						<div>
+							<div className={s.title}>Physical Wellbeing</div>
+							<div>17 patients reported</div>
 						</div>
 					</div>
-					<div className={s.gridMiniItem}>
-						<div className={s.gridItemBox}>
-							<div className={s.iconBox}>
-								<Face />
-							</div>
-							<div>
-								<div>Mood</div>
-								<div>17 patients reported</div>
-							</div>
+					<div className={s.gridItemBox}>
+						<div>
+							<CircularProgress size='lg' determinate value={Number(value1)}>
+								<Typography>{divideValue(Number(value1))}</Typography>
+							</CircularProgress>
 						</div>
-						<div className={s.gridItemBox}>
-							<div>
-								<CircularProgress size='lg' determinate value={value2 as number}>
-									<Typography>{value2 && `${[...String(value2)][0]},${[...String(value2)][1]}`}</Typography>
-								</CircularProgress>
-							</div>
-							<div>Average score</div>
+						<div>Average score</div>
+					</div>
+				</div>
+				<div className={`${s.gridItem} ${s.gridItem3}`}>
+					<div className={s.gridItemBox}>
+						<IconBox color={'#FFAE63'} className={s.iconBox}>
+							<Face />
+						</IconBox>
+						<div>
+							<div className={s.title}>Mood</div>
+							<div>17 patients reported</div>
 						</div>
 					</div>
-					<div className={s.gridMiniItemMedication}>
-						<div>Medication</div>
-						<div className={s.linearProgressLegend}>
-							<div className={s.linearProgressLegendItem}>
-								<div className={s.oval}></div>
-								<div>Ibrutinib</div>
-								<div>40%</div>
-							</div>
-							<div className={s.linearProgressLegendItem}>
-								<div className={s.oval}></div>
-								<div>Аcalabrutinib</div>
-								<div>37%</div>
-							</div>
-							<div className={s.linearProgressLegendItem}>
-								<div className={s.oval}></div>
-								<div>Zanubrutinib</div>
-								<div>13%</div>
-							</div>
-							<div className={s.linearProgressLegendItem}>
-								<div className={s.oval}></div>
-								<div>Other</div>
-								<div>10%</div>
-							</div>
+					<div className={s.gridItemBox}>
+						<div>
+							<CircularProgress size='lg' determinate value={Number(value2)}>
+								<Typography>{divideValue(Number(value2))}</Typography>
+							</CircularProgress>
+						</div>
+						<div>Average score</div>
+					</div>
+				</div>
+				<div className={`${s.gridItem} ${s.gridItem4}`}>
+					<div className={s.title}>Medication</div>
+					<div className={s.linearProgressLegend}>
+						<div className={s.linearProgressLegendItem}>
+							<Oval color={'#6960D7'} />
+							<div>Ibrutinib</div>
+							<div>40%</div>
+						</div>
+						<div className={s.linearProgressLegendItem}>
+							<Oval color={'#8593ed'} />
+							<div>Аcalabrutinib</div>
+							<div>37%</div>
+						</div>
+						<div className={s.linearProgressLegendItem}>
+							<Oval color={'#c7ceff'} />
+							<div>Zanubrutinib</div>
+							<div>13%</div>
+						</div>
+						<div className={s.linearProgressLegendItem}>
+							<Oval color={'#e3e4e8'} />
+							<div>Other</div>
+							<div>10%</div>
 						</div>
 					</div>
 				</div>
-				<div className={s.gridItem}>
+				<div className={`${s.gridItem} ${s.gridItem5}`}>
 					<div className={s.properties}>
 						<div className={s.title}>Patient Response Rate</div>
 						<div className={s.description2}>
@@ -212,25 +213,25 @@ export const Home = () => {
 					</div>
 					<div>
 						<div className={s.bigPie}>
-							<CircularProgress size='lg' determinate value={value3 as number}>
+							<CircularProgress size='lg' determinate value={Number(value3)}>
 								<Typography>{`${value3}%`}</Typography>
 							</CircularProgress>
 						</div>
 						<div className={s.legend}>
 							<div className={s.legendItem}>
-								<div className={s.oval}></div>
+								<Oval color={'#6960D7'} />
 								<div>Reported</div>
 							</div>
 							<div className={s.legendItem}>
-								<div className={s.oval}></div>
+								<Oval color={'#d2d0f1'} />
 								<div>Not reported</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div className={s.gridItem}>
+				<div className={`${s.gridItem} ${s.gridItem6}`}>
 					<div style={{ width: '100%' }}>
-						<span>Symptom Summary</span>
+						<span className={s.title}>Symptom Summary</span>
 						<ResponsiveContainer width='100%' height='100%'>
 							<PieChart width={160} height={160}>
 								<Pie

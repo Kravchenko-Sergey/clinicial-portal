@@ -1,9 +1,9 @@
-import { Header } from '../../components/header'
-import { Notifications } from '../../assets/icons/notifications.tsx'
-import { HelpCenter } from '../../assets/icons/help-center.tsx'
+import { Header } from 'components/header'
+import {Actions, Notifications} from 'assets/icons'
+import { HelpCenter } from 'assets/icons'
 import s from './patients.module.scss'
-import { Table } from '../../components/table/table.tsx'
-import { Actions } from '../../assets/icons/actions.tsx'
+import { Table } from 'components/table'
+
 import { ReactNode } from 'react'
 
 const columns: any = [
@@ -31,11 +31,11 @@ const columns: any = [
 		header: 'Medication Adherence',
 		accessorKey: 'medicationAdherence'
 	},
-	{
-		header: 'View Details',
-		accessorKey: 'viewDetails',
-		Cell: ({ value }: { value: ReactNode }) => value
-	}
+  {
+    header: 'View Details',
+    accessorKey: 'viewDetails',
+    Cell: ({value}: { value: ReactNode }) => <div>{value}</div>
+  }
 ]
 
 export const Patients = () => {
@@ -48,11 +48,7 @@ export const Patients = () => {
 			physicalWellbeing: 7.1,
 			mood: 8,
 			medicationAdherence: 78,
-			viewDetails: (
-				<div>
-					<Actions />
-				</div>
-			)
+			viewDetails: <Actions />
 		},
 		{
 			id: 12,
@@ -62,11 +58,7 @@ export const Patients = () => {
 			physicalWellbeing: 8.1,
 			mood: 5.5,
 			medicationAdherence: 78,
-			viewDetails: (
-				<div>
-					<Actions />
-				</div>
-			)
+			viewDetails: <Actions />
 		},
 		{
 			id: 13,
@@ -76,12 +68,8 @@ export const Patients = () => {
 			physicalWellbeing: 5.5,
 			mood: 4.8,
 			medicationAdherence: 70,
-			viewDetails: (
-				<div>
-					<Actions />
-				</div>
-			)
-		}
+			viewDetails: <Actions />
+    }
 	]
 
 	return (

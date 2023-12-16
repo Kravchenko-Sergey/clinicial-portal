@@ -1,11 +1,12 @@
-import { Header } from '../../components/header'
+import { Header } from 'components/header'
 import { Bar, BarChart, CartesianGrid, Label, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
-import { Size } from '../../assets/icons/size.tsx'
+import { Calendar, Size } from 'assets/icons'
 import s from './patient.module.scss'
-import { ArrowForward } from '../../assets/icons/arrow-forward.tsx'
+import { ArrowForward } from 'assets/icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import { PATH } from '@/router'
 
 export const Patient = () => {
 	const [selectValue, setSelectValue] = useState('')
@@ -122,7 +123,7 @@ export const Patient = () => {
 		setSelectValue(event.target.value)
 	}
 
-	const handleAllPatientsBtn = () => navigate('/patients')
+	const handleAllPatientsBtn = () => navigate(PATH.PATIENTS)
 
 	return (
 		<>
@@ -134,16 +135,17 @@ export const Patient = () => {
 				<div className={s.patientName}>{id}</div>
 			</div>
 			<Header>
-				<div className={s.text}>Symptoms</div>
+				<h2 className={s.text}>Symptoms</h2>
+				<Calendar />
 			</Header>
 			<div className={s.gridContainer}>
-				<div className={s.gridItem1}>
+				<div className={`${s.gridItem} ${s.gridItem1}`}>
 					<div className={s.gridItemTitleBox}>
 						<div className={s.gridItemTitle}>Patient Symptoms</div>
 						<Size />
 					</div>
-					<ResponsiveContainer width={542} height={206}>
-						<BarChart width={542} height={206} data={data} barSize={18} barCategoryGap={76}>
+					<ResponsiveContainer width={542} height={154}>
+						<BarChart width={542} height={154} data={data} barSize={18} barCategoryGap={76}>
 							<CartesianGrid strokeDasharray={'3 3'} />
 							<XAxis dataKey={'name'}></XAxis>
 							<YAxis dataKey={'number'}>
@@ -153,7 +155,7 @@ export const Patient = () => {
 						</BarChart>
 					</ResponsiveContainer>
 				</div>
-				<div className={s.gridItem2}>
+				<div className={`${s.gridItem} ${s.gridItem2}`}>
 					<div className={s.gridItemTitleBox}>
 						<div className={s.gridItemTitle}>Symptom Severity</div>
 						<div className={s.select}>
@@ -186,52 +188,58 @@ export const Patient = () => {
 					</ResponsiveContainer>
 				</div>
 				<div className={s.gridItem3}>
-					<div className={s.gridItem3Chart}>
-						<div className={s.gridItemTitleBox}>
-							<div className={s.gridItemTitle}>Physical Wellbeing and Mood</div>
-							<div className={s.legend}>
-								<div className={s.legendItem}>
-									<div className={s.oval}></div>
-									<div>Physical Wellbeing</div>
-								</div>
-								<div className={s.legendItem}>
-									<div className={s.oval}></div>
-									<div>Mood</div>
+					<div className={s.gridItem3TitleBox}>
+						<h2 className={s.text}>Patient Scores</h2>
+						<Calendar />
+					</div>
+					<div className={s.gridItem3Content}>
+						<div className={s.gridItem3Chart}>
+							<div className={s.gridItemTitleBox}>
+								<div className={s.gridItemTitle}>Physical Wellbeing and Mood</div>
+								<div className={s.legend}>
+									<div className={s.legendItem}>
+										<div className={s.oval}></div>
+										<div>Physical Wellbeing</div>
+									</div>
+									<div className={s.legendItem}>
+										<div className={s.oval}></div>
+										<div>Mood</div>
+									</div>
 								</div>
 							</div>
+							<ResponsiveContainer width='100%' height='100%'>
+								<LineChart
+									width={500}
+									height={300}
+									data={data3}
+									margin={{
+										top: 5,
+										right: 55,
+										left: 20,
+										bottom: 5
+									}}
+								>
+									<CartesianGrid strokeDasharray='3 3' />
+									<XAxis dataKey='date' />
+									<YAxis>
+										<Label value='Score' offset={0} position='center' angle={-90} />
+									</YAxis>
+									<Line type='monotone' dataKey='pv' stroke='#FF5492' activeDot={{ r: 8 }} />
+									<Line type='monotone' dataKey='uv' stroke='#FFAE63' />
+								</LineChart>
+							</ResponsiveContainer>
 						</div>
-						<ResponsiveContainer width='100%' height='100%'>
-							<LineChart
-								width={500}
-								height={300}
-								data={data3}
-								margin={{
-									top: 5,
-									right: 55,
-									left: 20,
-									bottom: 5
-								}}
-							>
-								<CartesianGrid strokeDasharray='3 3' />
-								<XAxis dataKey='date' />
-								<YAxis>
-									<Label value='Score' offset={0} position='center' angle={-90} />
-								</YAxis>
-								<Line type='monotone' dataKey='pv' stroke='#FF5492' activeDot={{ r: 8 }} />
-								<Line type='monotone' dataKey='uv' stroke='#FFAE63' />
-							</LineChart>
-						</ResponsiveContainer>
-					</div>
-					<div className={s.gridItem3Info}>
-						<div className={s.gridItem3InfoItem}>
-							<div className={s.gridItem3InfoItemTitle}>Physical Wellbeing</div>
-							<div className={s.gridItem3InfoItemSubtitle}>Average score</div>
-							<div className={s.gridItem3InfoItemValue}>7.1</div>
-						</div>
-						<div className={s.gridItem3InfoItem}>
-							<div className={s.gridItem3InfoItemTitle}>Mood</div>
-							<div className={s.gridItem3InfoItemSubtitle}>Average score</div>
-							<div className={s.gridItem3InfoItemValue}>8.2</div>
+						<div className={s.gridItem3Info}>
+							<div className={s.gridItem3InfoItem}>
+								<div className={s.gridItem3InfoItemTitle}>Physical Wellbeing</div>
+								<div className={s.gridItem3InfoItemSubtitle}>Average score</div>
+								<div className={s.gridItem3InfoItemValue}>7.1</div>
+							</div>
+							<div className={s.gridItem3InfoItem}>
+								<div className={s.gridItem3InfoItemTitle}>Mood</div>
+								<div className={s.gridItem3InfoItemSubtitle}>Average score</div>
+								<div className={s.gridItem3InfoItemValue}>8.2</div>
+							</div>
 						</div>
 					</div>
 				</div>
