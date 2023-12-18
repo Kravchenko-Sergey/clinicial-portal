@@ -171,16 +171,26 @@
   align-items: center;
   gap: 24px;
 
-  p {
+  &.p {
     font-size: 14px;
     color: #272543;
   }
 
-  span {
+   span {
     font-size: 14px;
     font-weight: 700;
     color: #272543;
   }
+}
+
+.reportedCount {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.fromPatients {
+  margin-top: 4px;
+  color: #A1A0AF;
 }
 
 

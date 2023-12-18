@@ -120,12 +120,12 @@ export const Home = () => {
 			<div className={s.gridContainer}>
 				<div className={`${s.gridItem} ${s.gridItem1}`}>
 					<div className={s.properties}>
-						<div className={s.title}>
+						<h3 className={s.title}>
 							<IconBox className={s.iconBox}>
 								<Group />
 							</IconBox>
 							<p>Patients</p>
-						</div>
+						</h3>
 						<div className={s.description}>
 							This statistic shows the total number of patients and the sex distribution
 						</div>
@@ -150,8 +150,15 @@ export const Home = () => {
 						<ResponsiveContainer minWidth={200} height='76%'>
 							<BarChart width={150} height={54} data={data} maxBarSize={56} barCategoryGap={'20%'}>
 								<CartesianGrid strokeDasharray={'5 5'} vertical={false} />
-								<XAxis dataKey={'gender'} axisLine={false} tickLine={false}></XAxis>
-								<YAxis dataKey={'number'} tickCount={3} domain={[0, 100]} axisLine={false} tickLine={false}></YAxis>
+								<XAxis dataKey={'gender'} axisLine={false} tickLine={false} tickMargin={8}></XAxis>
+								<YAxis
+									dataKey={'number'}
+									tickCount={3}
+									tickMargin={8}
+									domain={[0, 100]}
+									axisLine={false}
+									tickLine={false}
+								></YAxis>
 								<Bar dataKey='number' fill='#6960D7' />
 							</BarChart>
 						</ResponsiveContainer>
@@ -163,7 +170,7 @@ export const Home = () => {
 							<Man />
 						</IconBox>
 						<div>
-							<div className={s.title}>Physical Wellbeing</div>
+							<h3 className={s.title}>Physical Wellbeing</h3>
 							<div>17 patients reported</div>
 						</div>
 					</div>
@@ -182,8 +189,8 @@ export const Home = () => {
 							<Face />
 						</IconBox>
 						<div>
-							<div className={s.title}>Mood</div>
-							<div>17 patients reported</div>
+							<h3 className={s.title}>Mood</h3>
+							<p>17 patients reported</p>
 						</div>
 					</div>
 					<div className={s.gridItemBox}>
@@ -196,38 +203,40 @@ export const Home = () => {
 					</div>
 				</div>
 				<div className={`${s.gridItem} ${s.gridItem4}`}>
-					<div className={s.title}>Medication</div>
+					<h3 className={s.title}>Medication</h3>
 					<div className={s.linearProgressLegend}>
 						<div className={s.linearProgressLegendItem}>
 							<Oval color={'#6960D7'} />
-							<div>Ibrutinib</div>
-							<div>40%</div>
+							<p>Ibrutinib</p>
+							<p>40%</p>
 						</div>
 						<div className={s.linearProgressLegendItem}>
 							<Oval color={'#8593ed'} />
-							<div>Аcalabrutinib</div>
-							<div>37%</div>
+							<p>Аcalabrutinib</p>
+							<p>37%</p>
 						</div>
 						<div className={s.linearProgressLegendItem}>
 							<Oval color={'#c7ceff'} />
-							<div>Zanubrutinib</div>
-							<div>13%</div>
+							<p>Zanubrutinib</p>
+							<p>13%</p>
 						</div>
 						<div className={s.linearProgressLegendItem}>
 							<Oval color={'#e3e4e8'} />
-							<div>Other</div>
-							<div>10%</div>
+							<p>Other</p>
+							<p>10%</p>
 						</div>
 					</div>
 				</div>
 				<div className={`${s.gridItem} ${s.gridItem5}`}>
 					<div className={s.properties}>
-						<div className={s.title}>Patient Response Rate</div>
-						<div className={s.description2}>
+						<h3 className={s.title}>Patient Response Rate</h3>
+						<p className={s.description2}>
 							This statistic shows the percentage of patients who sent a report at least once in the last 7 days
-						</div>
-						<div>17 patients reported</div>
-						<div>from 20 patients</div>
+						</p>
+						<p>
+							<span className={s.reportedCount}>17</span> patients reported
+						</p>
+						<p className={s.fromPatients}>from 20 patients</p>
 					</div>
 					<div>
 						<div className={s.bigPie}>
@@ -238,18 +247,18 @@ export const Home = () => {
 						<div className={s.legend}>
 							<div className={s.legendItem}>
 								<Oval color={'#6960D7'} />
-								<div>Reported</div>
+								<p>Reported</p>
 							</div>
 							<div className={s.legendItem}>
 								<Oval color={'#d2d0f1'} />
-								<div>Not reported</div>
+								<p>Not reported</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className={`${s.gridItem} ${s.gridItem6}`}>
 					<div style={{ width: '100%' }}>
-						<span className={s.title}>Symptom Summary</span>
+						<h3 className={s.title}>Symptom Summary</h3>
 						<ResponsiveContainer width='100%' height='100%'>
 							<PieChart width={160} height={160}>
 								<Pie

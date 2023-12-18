@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
 import { PATH } from '@/router'
+import { Oval } from 'components/oval'
 
 export const Patient = () => {
 	const [selectValue, setSelectValue] = useState('')
@@ -146,9 +147,16 @@ export const Patient = () => {
 					</div>
 					<ResponsiveContainer width={542} height={154}>
 						<BarChart width={542} height={154} data={data} barSize={18} barCategoryGap={76}>
-							<CartesianGrid strokeDasharray={'3 3'} />
-							<XAxis dataKey={'name'}></XAxis>
-							<YAxis dataKey={'number'}>
+							<CartesianGrid strokeDasharray={'5 5'} vertical={false} />
+							<XAxis dataKey={'name'} axisLine={false} tickLine={false}></XAxis>
+							<YAxis
+								dataKey={'number'}
+								tickCount={6}
+								tickMargin={8}
+								domain={[0, 100]}
+								axisLine={false}
+								tickLine={false}
+							>
 								<Label value='Number of Times Reported' offset={0} position='center' angle={-90} />
 							</YAxis>
 							<Bar dataKey='number' fill='#6960D7' />
@@ -178,12 +186,12 @@ export const Patient = () => {
 							<Size />
 						</div>
 					</div>
-					<ResponsiveContainer width='70%' height='100%'>
+					<ResponsiveContainer width='90%' height='100%'>
 						<LineChart width={300} height={100} data={data2}>
 							<Line type='monotone' dataKey='pv' stroke='#8884d8' strokeWidth={2} />
-							<CartesianGrid strokeDasharray='3 3' />
-							<XAxis dataKey='date' />
-							<YAxis dataKey='' />
+							<CartesianGrid strokeDasharray='3 3' vertical={false} />
+							<XAxis dataKey='date' axisLine={false} tickLine={false} tickMargin={4} />
+							<YAxis dataKey='' axisLine={false} tickLine={false} tickMargin={8} />
 						</LineChart>
 					</ResponsiveContainer>
 				</div>
@@ -198,12 +206,12 @@ export const Patient = () => {
 								<div className={s.gridItemTitle}>Physical Wellbeing and Mood</div>
 								<div className={s.legend}>
 									<div className={s.legendItem}>
-										<div className={s.oval}></div>
-										<div>Physical Wellbeing</div>
+										<Oval color='#FF5193' />
+										<p>Physical Wellbeing</p>
 									</div>
 									<div className={s.legendItem}>
-										<div className={s.oval}></div>
-										<div>Mood</div>
+										<Oval color='#FCBD63' />
+										<p>Mood</p>
 									</div>
 								</div>
 							</div>
@@ -219,9 +227,9 @@ export const Patient = () => {
 										bottom: 5
 									}}
 								>
-									<CartesianGrid strokeDasharray='3 3' />
-									<XAxis dataKey='date' />
-									<YAxis>
+									<CartesianGrid strokeDasharray='5 5' vertical={false} />
+									<XAxis dataKey='date' axisLine={false} tickLine={false} tickMargin={8} />
+									<YAxis tickCount={6} domain={[0, 10]}>
 										<Label value='Score' offset={0} position='center' angle={-90} />
 									</YAxis>
 									<Line type='monotone' dataKey='pv' stroke='#FF5492' activeDot={{ r: 8 }} />
@@ -231,14 +239,14 @@ export const Patient = () => {
 						</div>
 						<div className={s.gridItem3Info}>
 							<div className={s.gridItem3InfoItem}>
-								<div className={s.gridItem3InfoItemTitle}>Physical Wellbeing</div>
-								<div className={s.gridItem3InfoItemSubtitle}>Average score</div>
-								<div className={s.gridItem3InfoItemValue}>7.1</div>
+								<p className={s.gridItem3InfoItemTitle}>Physical Wellbeing</p>
+								<p className={s.gridItem3InfoItemSubtitle}>Average score</p>
+								<p className={s.gridItem3InfoItemValue1}>7.1</p>
 							</div>
 							<div className={s.gridItem3InfoItem}>
-								<div className={s.gridItem3InfoItemTitle}>Mood</div>
-								<div className={s.gridItem3InfoItemSubtitle}>Average score</div>
-								<div className={s.gridItem3InfoItemValue}>8.2</div>
+								<p className={s.gridItem3InfoItemTitle}>Mood</p>
+								<p className={s.gridItem3InfoItemSubtitle}>Average score</p>
+								<p className={s.gridItem3InfoItemValue2}>8.2</p>
 							</div>
 						</div>
 					</div>
