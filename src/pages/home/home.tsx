@@ -15,7 +15,7 @@ import {
 	XAxis,
 	YAxis
 } from 'recharts'
-import { Group } from 'assets/icons'
+import { Group, Info } from 'assets/icons'
 import { CircularProgress, Typography } from '@mui/joy'
 import { useCountUp } from 'use-count-up'
 import { Face } from 'assets/icons'
@@ -23,6 +23,8 @@ import { Man } from 'assets/icons'
 import { divideValue } from '@/helpers'
 import { Oval } from 'components/oval'
 import { IconBox } from 'components/icon-box/icon-box.tsx'
+import { Tooltip } from '@mui/material'
+import { TooltipHomeLogo } from 'assets/images/tooltip-home-logo.tsx'
 
 type CustomizedLabelProps = {
 	cx: number
@@ -97,6 +99,22 @@ export const Home = () => {
 					<ImageLogo />
 					<LineLogo />
 					<TextLogo />
+					<Tooltip
+						title={
+							<div className={s.tooltipHomeLogo} style={{ backgroundColor: '#FFF' }}>
+								<TooltipHomeLogo />
+								<p>
+									<span>UT Health San Antonio MD Anderson Cancer Center</span> is proud to offer world-renowned cancer
+									care. We are the only NCI cancer center in Central and South Texas.
+								</p>
+							</div>
+						}
+						sx={{ backgroundColor: 'blue' }}
+					>
+						<div style={{ cursor: 'pointer' }}>
+							<Info />
+						</div>
+					</Tooltip>
 				</div>
 			</Header>
 			<div className={s.gridContainer}>
@@ -129,11 +147,11 @@ export const Home = () => {
 						</div>
 					</div>
 					<div className={s.tinyBarChart}>
-						<ResponsiveContainer width={242} height={176}>
-							<BarChart width={150} height={54} data={data} barSize={56} barCategoryGap={42}>
-								<CartesianGrid strokeDasharray={'3 3'} />
-								<XAxis dataKey={'gender'}></XAxis>
-								<YAxis dataKey={'number'}></YAxis>
+						<ResponsiveContainer minWidth={200} height='76%'>
+							<BarChart width={150} height={54} data={data} maxBarSize={56} barCategoryGap={'20%'}>
+								<CartesianGrid strokeDasharray={'5 5'} vertical={false} />
+								<XAxis dataKey={'gender'} axisLine={false} tickLine={false}></XAxis>
+								<YAxis dataKey={'number'} tickCount={3} domain={[0, 100]} axisLine={false} tickLine={false}></YAxis>
 								<Bar dataKey='number' fill='#6960D7' />
 							</BarChart>
 						</ResponsiveContainer>
@@ -241,11 +259,10 @@ export const Home = () => {
 									labelLine={false}
 									label={renderCustomizedLabel}
 									outerRadius={80}
-									fill='#8884d8'
 									dataKey='value'
 								>
-									{data.map((_, index) => (
-										<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+									{data2.map((_, index) => (
+										<Cell key={`cell-${index}`} fill={COLORS[index]} />
 									))}
 									<LabelList dataKey='name' position='outside' stroke='#55517A' offset={24} />
 								</Pie>

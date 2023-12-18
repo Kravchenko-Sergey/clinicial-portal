@@ -36,19 +36,26 @@ export const Table = ({ data, columns }: TableProps) => {
 					{table.getHeaderGroups().map(headerGroup => (
 						<tr key={headerGroup.id}>
 							{headerGroup.headers.map(header => (
-								<th key={header.id} className={s.th} onClick={header.column.getToggleSortingHandler()}>
-									<div className={s.thFlex}>
+								<th
+									key={header.id}
+									className={s.th}
+									onClick={header.column.columnDef.sortable && header.column.getToggleSortingHandler()}
+								>
+									<>
 										{header.isPlaceholder ? null : (
 											<>
 												{flexRender(header.column.columnDef.header, header.getContext())}
 												{
-													{ asc: <IconDropDown style={{ transform: 'rotate(180deg)' }} />, desc: <IconDropDown /> }[
-														header.column.getIsSorted() ?? ''
-													]
+													{
+														asc: header.column.columnDef.sortable && (
+															<IconDropDown style={{ transform: 'rotate(180deg)' }} />
+														),
+														desc: header.column.columnDef.sortable && <IconDropDown />
+													}[header.column.getIsSorted() ?? '']
 												}
 											</>
 										)}
-									</div>
+									</>
 								</th>
 							))}
 						</tr>
@@ -58,7 +65,7 @@ export const Table = ({ data, columns }: TableProps) => {
 					{table.getRowModel().rows.map(row => (
 						<tr key={row.id}>
 							{row.getVisibleCells().map(cell => {
-								if (cell.column.id === 'name') {
+								if (cell.column.id === 'viewDetails') {
 									return (
 										<td key={cell.id} className={s.td} onClick={() => handleNameClick((cell.row.original as any).id)}>
 											{flexRender(cell.column.columnDef.cell, cell.getContext())}

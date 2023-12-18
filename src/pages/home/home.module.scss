@@ -163,5 +163,25 @@
   gap: 8px;
 }
 
+.tooltipHomeLogo {
+  width: 230px;
+  padding: 16px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  p {
+    font-size: 14px;
+    color: #272543;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 700;
+    color: #272543;
+  }
+}
+
 
 
