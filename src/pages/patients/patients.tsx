@@ -1,9 +1,10 @@
 import { Header } from 'components/header'
-import { Actions, Notifications } from 'assets/icons'
+import { Actions, Info, Notifications } from 'assets/icons'
 import { HelpCenter } from 'assets/icons'
 import s from './patients.module.scss'
 import { Table } from 'components/table'
 import { Oval } from 'components/oval'
+import { Tooltip } from '@mui/material'
 
 const columns: any = [
 	{
@@ -38,7 +39,35 @@ const columns: any = [
 			return (
 				<div className={s.symptomsHeaderCell}>
 					<div>symptoms</div>
-					<div>Severity</div>
+					<div>
+						<p>Severity</p>
+						<Tooltip
+							title={
+								<div className={s.symptomsTooltip}>
+									<div>
+										<Oval color='#FF0000' />
+										<p>Very Severe</p>
+									</div>
+									<div>
+										<Oval color='#FF8A00' />
+										<p>Severe</p>
+									</div>
+									<div>
+										<Oval color='#F3CE4D' />
+										<p>Moderate</p>
+									</div>
+									<div>
+										<Oval color='#4ABF7A' />
+										<p>Mild</p>
+									</div>
+								</div>
+							}
+						>
+							<div style={{ cursor: 'pointer' }}>
+								<Info />
+							</div>
+						</Tooltip>
+					</div>
 				</div>
 			)
 		},

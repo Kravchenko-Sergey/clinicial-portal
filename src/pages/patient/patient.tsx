@@ -1,5 +1,16 @@
 import { Header } from 'components/header'
-import { Bar, BarChart, CartesianGrid, Label, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+import {
+	Bar,
+	BarChart,
+	CartesianGrid,
+	Label,
+	Line,
+	LineChart,
+	ResponsiveContainer,
+	XAxis,
+	YAxis,
+	Tooltip
+} from 'recharts'
 import { Calendar, Size } from 'assets/icons'
 import s from './patient.module.scss'
 import { ArrowForward } from 'assets/icons'
@@ -40,30 +51,35 @@ export const Patient = () => {
 	const data2 = [
 		{
 			date: 'Nov 7',
+			symptomSeverity: 'Very Severe',
 			uv: 4000,
 			pv: 2400,
 			amt: 2400
 		},
 		{
 			date: 'Nov 8',
+			symptomSeverity: 'Severe',
 			uv: 3000,
 			pv: 1398,
 			amt: 2210
 		},
 		{
 			date: 'Nov 9',
+			symptomSeverity: 'Moderate',
 			uv: 2000,
 			pv: 9800,
 			amt: 2290
 		},
 		{
 			date: 'Nov 10',
+			symptomSeverity: 'Mild',
 			uv: 2780,
 			pv: 3908,
 			amt: 2000
 		},
 		{
 			date: 'Nov 11',
+			symptomSeverity: 'None',
 			uv: 1890,
 			pv: 4800,
 			amt: 2181
@@ -145,8 +161,8 @@ export const Patient = () => {
 						<div className={s.gridItemTitle}>Patient Symptoms</div>
 						<Size />
 					</div>
-					<ResponsiveContainer width={542} height={154}>
-						<BarChart width={542} height={154} data={data} barSize={18} barCategoryGap={76}>
+					<ResponsiveContainer width={'70%'} height={154}>
+						<BarChart width={542} height={154} data={data} barSize={18} barCategoryGap={'20%'}>
 							<CartesianGrid strokeDasharray={'5 5'} vertical={false} />
 							<XAxis dataKey={'name'} axisLine={false} tickLine={false}></XAxis>
 							<YAxis
@@ -186,12 +202,29 @@ export const Patient = () => {
 							<Size />
 						</div>
 					</div>
-					<ResponsiveContainer width='90%' height='100%'>
-						<LineChart width={300} height={100} data={data2}>
+					<ResponsiveContainer width='70%' height='100%'>
+						<LineChart width={500} height={100} data={data2}>
 							<Line type='monotone' dataKey='pv' stroke='#8884d8' strokeWidth={2} />
-							<CartesianGrid strokeDasharray='3 3' vertical={false} />
+							<CartesianGrid strokeDasharray='5 5' vertical={false} />
 							<XAxis dataKey='date' axisLine={false} tickLine={false} tickMargin={4} />
-							<YAxis dataKey='' axisLine={false} tickLine={false} tickMargin={8} />
+							<YAxis axisLine={false} tickLine={false} tickMargin={8} />
+							<Tooltip
+								content={
+									<div className={s.tooltipContent}>
+										<div>
+											<p>November 10</p>
+										</div>
+										<div>
+											<p>Severity:</p>
+											<p>Moderate</p>
+										</div>
+										<div>
+											<p>Symptoms:</p>
+											<p>Fatigue</p>
+										</div>
+									</div>
+								}
+							/>
 						</LineChart>
 					</ResponsiveContainer>
 				</div>
@@ -234,6 +267,23 @@ export const Patient = () => {
 									</YAxis>
 									<Line type='monotone' dataKey='pv' stroke='#FF5492' activeDot={{ r: 8 }} />
 									<Line type='monotone' dataKey='uv' stroke='#FFAE63' />
+									<Tooltip
+										content={
+											<div className={s.tooltipContent}>
+												<div>
+													<p>November 10</p>
+												</div>
+												<div>
+													<p>Mental State:</p>
+													<p>7 / 10</p>
+												</div>
+												<div>
+													<p>Symptoms:</p>
+													<p>Fatigue</p>
+												</div>
+											</div>
+										}
+									/>
 								</LineChart>
 							</ResponsiveContainer>
 						</div>
