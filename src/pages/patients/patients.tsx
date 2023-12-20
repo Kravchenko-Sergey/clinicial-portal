@@ -1,5 +1,5 @@
 import { Header } from 'components/header'
-import { Actions, Info, Notifications } from 'assets/icons'
+import { ContentPaste, Info, Notifications } from 'assets/icons'
 import { HelpCenter } from 'assets/icons'
 import s from './patients.module.scss'
 import { Table } from 'components/table'
@@ -19,8 +19,8 @@ const columns: any = [
 		header: () => {
 			return (
 				<div className={s.medicationHeaderCell}>
-					<div>medication</div>
-					<div>Dose / frequency</div>
+					<p>medication</p>
+					<p>Dose / frequency</p>
 				</div>
 			)
 		},
@@ -28,8 +28,8 @@ const columns: any = [
 		cell: ({ row }: { row: any }) => {
 			return (
 				<div className={s.medicationCell}>
-					<div>{row.original.medication}</div>
-					<div>(560mg / QD)</div>
+					<p>{row.original.medication}</p>
+					<p>(560mg / QD)</p>
 				</div>
 			)
 		}
@@ -77,15 +77,15 @@ const columns: any = [
 				<div className={s.symptomsCell}>
 					<div>
 						<Oval color='#F3CE4D' />
-						<div>{row.original.symptoms}</div>
+						<p>{row.original.symptoms}</p>
 					</div>
 					<div>
 						<Oval color='#4ABF7A' />
-						<div>{row.original.symptoms}</div>
+						<p>{row.original.symptoms}</p>
 					</div>
 					<div>
 						<Oval color='#FF1010' />
-						<div>{row.original.symptoms}</div>
+						<p>{row.original.symptoms}</p>
 					</div>
 				</div>
 			)
@@ -95,8 +95,8 @@ const columns: any = [
 		header: () => {
 			return (
 				<div className={s.physicalWellbeingHeaderCell}>
-					<div>Physical Wellbeing</div>
-					<div>In the last 7 days</div>
+					<p>Physical Wellbeing</p>
+					<p>In the last 7 days</p>
 				</div>
 			)
 		},
@@ -110,8 +110,8 @@ const columns: any = [
 		header: () => {
 			return (
 				<div className={s.moodHeaderCell}>
-					<div>mood</div>
-					<div>In the last 7 days</div>
+					<p>mood</p>
+					<p>In the last 7 days</p>
 				</div>
 			)
 		},
@@ -120,7 +120,7 @@ const columns: any = [
 		cell: ({ row }: { row: any }) => {
 			return (
 				<div className={s.moodCell}>
-					<div>{row.original.mood}</div>
+					<p>{row.original.mood}</p>
 				</div>
 			)
 		}
@@ -129,8 +129,8 @@ const columns: any = [
 		header: () => {
 			return (
 				<div className={s.medicationAdherenceHeaderCell}>
-					<div>Medication Adherence</div>
-					<div>In the last 7 days</div>
+					<p>Medication Adherence</p>
+					<p>In the last 7 days</p>
 				</div>
 			)
 		},
@@ -143,9 +143,11 @@ const columns: any = [
 	{
 		header: 'View Details',
 		accessorKey: 'viewDetails',
-		cell: ({ row }: { row: any }) => {
-			return <div className={s.viewDetailsCell}>{row.original.viewDetails}</div>
-		}
+		cell: () => (
+			<div className={s.viewDetailsCell}>
+				<ContentPaste />
+			</div>
+		)
 	}
 ]
 
@@ -158,8 +160,7 @@ export const Patients = () => {
 			symptoms: 'Muscle aches (Moderate)',
 			physicalWellbeing: 7.1,
 			mood: 8,
-			medicationAdherence: 78,
-			viewDetails: <Actions />
+			medicationAdherence: 78
 		},
 		{
 			id: 12,
@@ -168,8 +169,7 @@ export const Patients = () => {
 			symptoms: 'Heart palpitations (Mild)',
 			physicalWellbeing: 8.1,
 			mood: 5.5,
-			medicationAdherence: 78,
-			viewDetails: <Actions />
+			medicationAdherence: 78
 		},
 		{
 			id: 13,
@@ -178,8 +178,7 @@ export const Patients = () => {
 			symptoms: 'Diarrhea (Severe)',
 			physicalWellbeing: 5.5,
 			mood: 4.8,
-			medicationAdherence: 70,
-			viewDetails: <Actions />
+			medicationAdherence: 70
 		}
 	]
 
