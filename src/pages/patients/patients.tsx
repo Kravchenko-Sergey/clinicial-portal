@@ -134,6 +134,7 @@ const columns: any = [
 				</div>
 			)
 		},
+		id: 'medicationAdherence',
 		accessorKey: 'medicationAdherence',
 		sortable: true,
 		cell: ({ row }: { row: any }) => {

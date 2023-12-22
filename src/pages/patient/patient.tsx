@@ -16,11 +16,13 @@ import s from './patient.module.scss'
 import { ArrowForward } from 'assets/icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material'
 import { PATH } from '@/router'
 import { Oval } from 'components/oval'
 
 export const Patient = () => {
+	const [isBigGridItem1, setIsBigGridItem1] = useState(false)
+	const [isBigGridItem2, setIsBigGridItem2] = useState(false)
 	const [selectValue, setSelectValue] = useState('')
 	const navigate = useNavigate()
 	const { id } = useParams()
@@ -86,12 +88,14 @@ export const Patient = () => {
 		},
 		{
 			date: 'Nov 12',
+			symptomSeverity: 'Mild',
 			uv: 2390,
 			pv: 3800,
 			amt: 2500
 		},
 		{
 			date: 'Nov 13',
+			symptomSeverity: 'Moderate',
 			uv: 3490,
 			pv: 4300,
 			amt: 2100
@@ -136,11 +140,13 @@ export const Patient = () => {
 		}
 	]
 
-	const handleChange = (event: SelectChangeEvent) => {
-		setSelectValue(event.target.value)
-	}
+	const handleChangeSelect = (event: SelectChangeEvent) => setSelectValue(event.target.value)
 
 	const handleAllPatientsBtn = () => navigate(PATH.PATIENTS)
+
+	const handleBigGreedItem1 = () => setIsBigGridItem1(!isBigGridItem1)
+
+	const handleBigGreedItem2 = () => setIsBigGridItem2(!isBigGridItem2)
 
 	return (
 		<>
@@ -153,61 +159,90 @@ export const Patient = () => {
 			</div>
 			<Header>
 				<h2 className={s.text}>Symptoms</h2>
-				<Calendar />
+				<Calendar className={s.icon} />
 			</Header>
 			<div className={s.gridContainer}>
-				<div className={`${s.gridItem} ${s.gridItem1}`}>
+				<div
+					className={
+						!isBigGridItem1 ? `${s.gridItem} ${s.gridItem1}` : `${s.gridItem} ${s.gridItem1} ${s.bigGridItem1}`
+					}
+				>
 					<div className={s.gridItemTitleBox}>
 						<div className={s.gridItemTitle}>Patient Symptoms</div>
-						<Size />
+						<Size onClick={handleBigGreedItem1} className={s.icon} />
 					</div>
-					<ResponsiveContainer width={'70%'} height={154}>
-						<BarChart width={542} height={154} data={data} barSize={18} barCategoryGap={'20%'}>
+					<ResponsiveContainer width='100%' height={188}>
+						<BarChart width={624} height={180} data={data} barSize={18} barCategoryGap={'20%'}>
 							<CartesianGrid strokeDasharray={'5 5'} vertical={false} />
 							<XAxis dataKey={'name'} axisLine={false} tickLine={false}></XAxis>
 							<YAxis
 								dataKey={'number'}
 								tickCount={6}
-								tickMargin={8}
+								tickMargin={-8}
 								domain={[0, 100]}
 								axisLine={false}
 								tickLine={false}
 							>
-								<Label value='Number of Times Reported' offset={0} position='center' angle={-90} />
+								<Label
+									value='Number of Times Reported'
+									offset={0}
+									position='center'
+									angle={-90}
+									style={{ fill: '#55517A', fontSize: 12, fontWeight: 700 }}
+								/>
 							</YAxis>
 							<Bar dataKey='number' fill='#6960D7' />
 						</BarChart>
 					</ResponsiveContainer>
 				</div>
-				<div className={`${s.gridItem} ${s.gridItem2}`}>
+				<div
+					className={
+						!isBigGridItem2 ? `${s.gridItem} ${s.gridItem2}` : `${s.gridItem} ${s.gridItem2} ${s.bigGridItem2}`
+					}
+				>
 					<div className={s.gridItemTitleBox}>
 						<div className={s.gridItemTitle}>Symptom Severity</div>
 						<div className={s.select}>
 							<FormControl>
-								<InputLabel id='demo-simple-select-label'>Symptom</InputLabel>
 								<Select
 									labelId='demo-simple-select-label'
 									id='demo-simple-select'
 									value={selectValue}
-									label='Age'
-									onChange={handleChange}
+									onChange={handleChangeSelect}
 									size={'small'}
-									sx={{ width: '126px', height: '32px', justifyContent: 'end' }}
+									sx={{ width: '126px', height: '32px' }}
 								>
 									<MenuItem value={'Fatigue'}>Fatigue</MenuItem>
 									<MenuItem value={'Diarrhea'}>Diarrhea</MenuItem>
 									<MenuItem value={'Bruising'}>Bruising</MenuItem>
 								</Select>
 							</FormControl>
-							<Size />
+							<Size onClick={handleBigGreedItem2} className={s.icon} />
 						</div>
 					</div>
-					<ResponsiveContainer width='70%' height='100%'>
-						<LineChart width={500} height={100} data={data2}>
-							<Line type='monotone' dataKey='pv' stroke='#8884d8' strokeWidth={2} />
+					<ResponsiveContainer width='100%' height={180}>
+						<LineChart
+							width={300}
+							height={180}
+							data={data2}
+							margin={{
+								top: 10,
+								right: 10,
+								left: 20,
+								bottom: 5
+							}}
+						>
+							<Line
+								type='monotone'
+								dataKey='symptomSeverity'
+								stroke='#4EAAFF'
+								strokeWidth={1.6}
+								dot={false}
+								activeDot={{ fill: '#FFF', stroke: '#4EAAFF', strokeWidth: 6, r: 6 }}
+							/>
 							<CartesianGrid strokeDasharray='5 5' vertical={false} />
-							<XAxis dataKey='date' axisLine={false} tickLine={false} tickMargin={4} />
-							<YAxis axisLine={false} tickLine={false} tickMargin={8} />
+							<XAxis dataKey='date' axisLine={false} tickLine={false} tickMargin={8} />
+							<YAxis type='category' dataKey='symptomSeverity' axisLine={false} tickLine={false} tickMargin={8} />
 							<Tooltip
 								content={
 									<div className={s.tooltipContent}>
@@ -231,7 +266,7 @@ export const Patient = () => {
 				<div className={s.gridItem3}>
 					<div className={s.gridItem3TitleBox}>
 						<h2 className={s.text}>Patient Scores</h2>
-						<Calendar />
+						<Calendar className={s.icon} />
 					</div>
 					<div className={s.gridItem3Content}>
 						<div className={s.gridItem3Chart}>
@@ -254,19 +289,37 @@ export const Patient = () => {
 									height={300}
 									data={data3}
 									margin={{
-										top: 5,
+										top: 10,
 										right: 55,
-										left: 20,
-										bottom: 5
+										left: 0,
+										bottom: 0
 									}}
 								>
 									<CartesianGrid strokeDasharray='5 5' vertical={false} />
 									<XAxis dataKey='date' axisLine={false} tickLine={false} tickMargin={8} />
-									<YAxis tickCount={6} domain={[0, 10]}>
-										<Label value='Score' offset={0} position='center' angle={-90} />
+									<YAxis tickCount={6} domain={[0, 10]} axisLine={false} tickLine={false}>
+										<Label
+											value='Score'
+											offset={0}
+											position='center'
+											angle={-90}
+											style={{ fill: '#55517A', fontSize: 12, fontWeight: 700 }}
+										/>
 									</YAxis>
-									<Line type='monotone' dataKey='pv' stroke='#FF5492' activeDot={{ r: 8 }} />
-									<Line type='monotone' dataKey='uv' stroke='#FFAE63' />
+									<Line
+										type='monotone'
+										dataKey='pv'
+										stroke='#FF5492'
+										strokeWidth={1.6}
+										activeDot={{ fill: '#FFF', stroke: '#FF5492', strokeWidth: 6, r: 6 }}
+									/>
+									<Line
+										type='monotone'
+										dataKey='uv'
+										stroke='#FFAE63'
+										strokeWidth={1.6}
+										activeDot={{ fill: '#FFF', stroke: '#FFAE63', strokeWidth: 6, r: 6 }}
+									/>
 									<Tooltip
 										content={
 											<div className={s.tooltipContent}>

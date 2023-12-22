@@ -39,6 +39,7 @@ export const Table = ({ data, columns }: TableProps) => {
 								<th
 									key={header.id}
 									className={s.th}
+									style={header.column.columnDef.sortable && { cursor: 'pointer' }}
 									onClick={header.column.columnDef.sortable && header.column.getToggleSortingHandler()}
 								>
 									<>

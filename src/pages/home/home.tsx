@@ -1,7 +1,6 @@
 import { Header } from 'components/header'
 import { ImageLogo } from 'assets/images'
 import { LineLogo } from 'assets/images'
-import { TextLogo } from 'assets/images'
 import s from './home.module.scss'
 import {
 	Bar,
@@ -98,7 +97,7 @@ export const Home = () => {
 				<div className={s.logo}>
 					<ImageLogo />
 					<LineLogo />
-					<TextLogo />
+					<img src='src/assets/images/Logo.svg' alt='text logo' />
 					<Tooltip
 						title={
 							<div className={s.tooltipHomeLogo} style={{ backgroundColor: '#FFF' }}>
@@ -111,7 +110,7 @@ export const Home = () => {
 						}
 						sx={{ backgroundColor: 'blue' }}
 					>
-						<div style={{ cursor: 'pointer' }}>
+						<div style={{ cursor: 'pointer', paddingTop: '8px' }}>
 							<Info />
 						</div>
 					</Tooltip>
@@ -147,7 +146,7 @@ export const Home = () => {
 						</div>
 					</div>
 					<div className={s.tinyBarChart}>
-						<ResponsiveContainer minWidth={200} height='76%'>
+						<ResponsiveContainer width='100%' height='76%'>
 							<BarChart width={150} height={54} data={data} maxBarSize={56} barCategoryGap={'20%'}>
 								<CartesianGrid strokeDasharray={'5 5'} vertical={false} />
 								<XAxis dataKey={'gender'} axisLine={false} tickLine={false} tickMargin={8}></XAxis>
@@ -176,8 +175,8 @@ export const Home = () => {
 					</div>
 					<div className={s.gridItemBox}>
 						<div>
-							<CircularProgress size='lg' determinate value={Number(value1)}>
-								<Typography>{divideValue(Number(value1))}</Typography>
+							<CircularProgress size='lg' determinate value={Number(value1)} className={s.customBackground1}>
+								<Typography sx={{ fontSize: '22px', fontWeight: 700 }}>{divideValue(Number(value1))}</Typography>
 							</CircularProgress>
 						</div>
 						<div>Average score</div>
@@ -195,8 +194,8 @@ export const Home = () => {
 					</div>
 					<div className={s.gridItemBox}>
 						<div>
-							<CircularProgress size='lg' determinate value={Number(value2)}>
-								<Typography>{divideValue(Number(value2))}</Typography>
+							<CircularProgress size='lg' determinate value={Number(value2)} className={s.customBackground2}>
+								<Typography sx={{ fontSize: '20px', fontWeight: 700 }}>{divideValue(Number(value2))}</Typography>
 							</CircularProgress>
 						</div>
 						<div>Average score</div>
@@ -240,8 +239,8 @@ export const Home = () => {
 					</div>
 					<div>
 						<div className={s.bigPie}>
-							<CircularProgress size='lg' determinate value={Number(value3)}>
-								<Typography>{`${value3}%`}</Typography>
+							<CircularProgress size='lg' determinate value={Number(value3)} className={s.customBackground3}>
+								<Typography sx={{ fontSize: '20px', fontWeight: 700 }}>{`${value3}%`}</Typography>
 							</CircularProgress>
 						</div>
 						<div className={s.legend}>

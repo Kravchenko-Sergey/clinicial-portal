@@ -19,10 +19,13 @@
           "area5 area6";
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 80px 80px 104px 304px;
+  flex-wrap: wrap;
   gap: 24px;
 }
 
 .gridItem {
+  min-width: 408px;
+  max-width: 824px;
   padding: 24px;
   background-color: #F9F9FB;
   border-radius: 12px;
@@ -46,6 +49,8 @@
 
   &.gridItem4 {
     grid-area: area4;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   &.gridItem5 {
@@ -62,6 +67,10 @@
   flex-direction: column;
   align-items: start;
   flex: 1 1 50%;
+
+  & .legend {
+    padding-top: 42px;
+  }
 }
 
 .title {
@@ -149,12 +158,40 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  .customBackground3 {
+    width: 148px;
+    height: 148px;
+    display: block;
+
+    svg {
+      :first-child {
+        stroke: #dcdcea;
+        stroke-width: 8px;
+        r: 70;
+      }
+
+      :last-child {
+        stroke: #6960D7;
+        stroke-width: 8px;
+        stroke-linecap: square;
+        r: 70;
+      }
+    }
+  }
+  & p {
+    position: absolute;
+    top: 58px;
+    left: 56px;
+  }
 }
 
 .linearProgressLegend {
   display: flex;
   justify-content: space-between;
-  gap: 24px;
+  flex-wrap: wrap;
+  column-gap: 24px;
 }
 
 .linearProgressLegendItem {
@@ -191,6 +228,26 @@
 .fromPatients {
   margin-top: 4px;
   color: #A1A0AF;
+}
+
+.customBackground1 {
+  svg {
+    :last-child {
+      stroke: #FF5492;
+      stroke-width: 4px;
+      stroke-linecap: square;
+    }
+  }
+}
+
+.customBackground2 {
+  svg {
+    :last-child {
+      stroke: #FFAE63;
+      stroke-width: 4px;
+      stroke-linecap: square;
+    }
+  }
 }
 
 

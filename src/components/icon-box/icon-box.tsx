@@ -10,7 +10,7 @@ type IconBoxProps = {
 
 export const IconBox = ({ children, className, width = 32, height = 32, color }: IconBoxProps) => {
 	return (
-		<div className={className && className} style={{ width: width, height: height, background: color }}>
+		<div className={className && className} style={{ minWidth: width, height: height, background: color }}>
 			{children}
 		</div>
 	)
