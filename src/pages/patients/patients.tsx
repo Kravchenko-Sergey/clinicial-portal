@@ -6,7 +6,8 @@ import { Table } from 'components/table'
 import { Oval } from 'components/oval'
 import { Tooltip } from '@mui/material'
 import { useEffect } from 'react'
-import { patientsThunks } from '@/services/patients/patient-slice.ts'
+import { patientsThunks } from '@/services/patients/patients-slice.ts'
+import { useAppDispatch } from '@/common/hooks/use-app-dispatch.ts'
 
 const columns: any = [
 	{
@@ -155,6 +156,8 @@ const columns: any = [
 ]
 
 export const Patients = () => {
+	const dispatch = useAppDispatch()
+
 	const data = [
 		{
 			id: 11,
@@ -186,7 +189,7 @@ export const Patients = () => {
 	]
 
 	useEffect(() => {
-		patientsThunks.getPatients({})
+		dispatch(patientsThunks.getPatients({}))
 	}, [])
 
 	return (

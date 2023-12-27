@@ -4,7 +4,7 @@ import { createAppAsyncThunk } from '@/common/utils/cteate-app-async-thunk.ts'
 import { thunkTryCatch } from '@/common/utils/thunk-try-catch.ts'
 
 const THUNK_PREFIXES = {
-	GET_PATIENTS: 'auth/getPatients'
+	GET_PATIENTS: 'getPatients'
 }
 
 const getPatients = createAppAsyncThunk<any, any>(THUNK_PREFIXES.GET_PATIENTS, async (arg: any, thunkAPI: any) => {
@@ -25,6 +25,7 @@ const slice = createSlice({
 	reducers: {},
 	extraReducers: builder => {
 		builder.addCase(getPatients.fulfilled, (state, action) => {
+			console.log(action)
 			state.patients = action.payload.patients
 		})
 	}
