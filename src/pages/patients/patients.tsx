@@ -5,6 +5,8 @@ import s from './patients.module.scss'
 import { Table } from 'components/table'
 import { Oval } from 'components/oval'
 import { Tooltip } from '@mui/material'
+import { useEffect } from 'react'
+import { patientsThunks } from '@/services/patients/patient-slice.ts'
 
 const columns: any = [
 	{
@@ -182,6 +184,10 @@ export const Patients = () => {
 			medicationAdherence: 70
 		}
 	]
+
+	useEffect(() => {
+		patientsThunks.getPatients({})
+	}, [])
 
 	return (
 		<>
